@@ -41,7 +41,7 @@ const Signup = () => {
     formData.set("password", signupData.password);
     formData.set("profilePic", signupData.profilePic);
     try {
-      const res = await axios.post(url + "/api/signup", formData);
+      const res = await axios.post(url + "api/signup", formData);
       //console.log(res)
       if (res.status) {
         toast.success(res.data.message);

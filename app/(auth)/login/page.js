@@ -31,7 +31,7 @@ const Login = () => {
     formData.set("password",loginData.password);
     // console.log(formData)
     try {
-        const res=await axios.post(url+"/api/login",formData);
+        const res=await axios.post(url+"api/login",formData);
         console.log(res)
         if(res.status){
             toast.success(res.data.message);

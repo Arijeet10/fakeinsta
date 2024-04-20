@@ -29,7 +29,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
     };
     //console.log(payload)
     try {
-      const res=await axios.post("/api/user/post/comments-for-post/",payload)
+      const res=await axios.post(url+"api/user/post/comments-for-post/",payload)
       console.log(res.data);
       if(res.status){
         setPostComments(res?.data?.commentList?.comments)
@@ -58,7 +58,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
       comment
     }
     try {
-      const res=await axios.post(url+"/api/user/post/comment",payload)
+      const res=await axios.post(url+"api/user/post/comment",payload)
       console.log(res)
       if(res.status){
         setComment("");

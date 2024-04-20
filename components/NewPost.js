@@ -36,7 +36,7 @@ const NewPost = ({ userData, fetchCurrentUser }) => {
     formData.set("photo",postData.photo);
     // formData.set("userID",userData._id)
     try {
-      const res=await axios.post(url+"/api/user/newpost/",formData);
+      const res=await axios.post(url+"api/user/newpost/",formData);
       if(res.status){
         toast.success(res.data.message);
         //console.log(res.data.savedPost);

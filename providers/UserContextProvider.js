@@ -9,7 +9,7 @@ const UserContextProvider=({children})=>{
 
     const fetchCurrentUser=async()=>{
         try {
-            const res=await axios.get(process.env.NEXT_PUBLIC_ROOT_URL+"/api/user/profile")
+            const res=await axios.get(process.env.NEXT_PUBLIC_ROOT_URL+"api/user/profile")
             //console.log(res.data.user)
             setUserData(res.data.user)
 
