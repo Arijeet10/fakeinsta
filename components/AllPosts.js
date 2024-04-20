@@ -9,7 +9,7 @@ const AllPosts = () => {
   //console.log(posts);
   return (
     <>
-      <div className="">
+      <div className="flex flex-col gap-4">
         {posts?.map((post, i) => {
           return <PostCard post={post} fetchAllPosts={fetchAllPosts} key={i} />;
         })}
