@@ -24,7 +24,7 @@ export async function OPTIONS(request) {
 
 export async function GET(){
     try {
-        const posts=await UserPostModel.find();
+        const posts=await UserPostModel.find().populate("userID").sort({createdAt:-1});
         if(!posts){
             return NextResponse.json({message:"No posts available"},{status:404});
         }

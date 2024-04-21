@@ -6,7 +6,7 @@ import PostCard from "./PostCard";
 
 const AllPosts = () => {
   const { posts, fetchAllPosts } = useContext(PostsContext);
-  //console.log(posts);
+  console.log(posts);
   return (
     <>
       <div className="flex flex-col gap-4">

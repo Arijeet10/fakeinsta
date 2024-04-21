@@ -10,7 +10,7 @@ import CommentsCard from "./CommentsCard";
 const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
 const PostCard = ({ post, fetchAllPosts }) => {
-  // console.log(post)
+  //console.log(post)
   const [showComment, setShowComment] = useState(false);
   const [comment,setComment]=useState("");
   const [postComments,setPostComments]=useState();
@@ -59,7 +59,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
     }
     try {
       const res=await axios.post(url+"api/user/post/comment",payload)
-      console.log(res)
+      //console.log(res)
       if(res.status){
         setComment("");
         fetchAllPosts();
