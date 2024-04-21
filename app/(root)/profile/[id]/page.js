@@ -123,6 +123,27 @@ const Profile = ({ params }) => {
                     ultricies tortor consequat eu. Sed blandit vel metus eu
                     porttitor.
                   </div>
+
+                  {/* Following and Followers panel */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-col ">
+                      <div>
+                        {profile?.following?.length}
+                      </div>
+                      <div className="text-lg font-semibold">
+                        Following
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <div>
+                        {profile?.followers?.length}
+                      </div>
+                      <div className="text-lg font-semibold">
+                        Followers
+                      </div>
+                    </div>
+                  </div>
+
                   {/* show follow unfollow option */}
                   {userData?._id !== profile?._id && (
                     <div>

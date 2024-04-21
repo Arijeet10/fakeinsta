@@ -14,14 +14,14 @@ const Home = () => {
   return (
     <>
       <div className="p-4 grid sm:grid-cols-12 sm:gap-4">
-        <div className="sm:col-span-3">
+        <div className="sm:col-span-4 md:col-span-3">
           <ProfileCard userData={userData} />
         </div>
-        <div className="sm:col-span-6 flex flex-col gap-8">
+        <div className="sm:col-span-8 md:col-span-6 flex flex-col gap-8">
           <NewPost userData={userData} fetchCurrentUser={fetchCurrentUser} />
           <AllPosts />
         </div>
-        <div className="sm:col-span-3">
+        <div className="hidden md:block md:col-span-3">
           <FollowingCard />
         </div>
       </div>
