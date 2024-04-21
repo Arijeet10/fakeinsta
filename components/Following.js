@@ -51,7 +51,7 @@ const Following = ({ personID }) => {
             <div className="p-2">
               <Toaster />
               <div className="p-1 flex items-center justify-between">
-                <div onClick={()=>router.push(`/profile/${person?._id}`)} className="flex items-center gap-2 curson-pointer">
+                <div onClick={()=>router.push(`/profile/${person?._id}`)} className="flex items-center gap-2 cursor-pointer">
                   <img
                     src={person?.profilePic}
                     alt="profile image"
