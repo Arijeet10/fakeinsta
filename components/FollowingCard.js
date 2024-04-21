@@ -4,7 +4,7 @@
 import { IoPersonAdd } from "react-icons/io5";
 import { IoPersonRemove } from "react-icons/io5";
 
-const FriendsCard = () => {
+const FollowingCard = () => {
   return (
     <>
       <div className="p-2 border shadow-md rounded-md">
@@ -30,4 +30,4 @@ const FriendsCard = () => {
   );
 };
 
-export default FriendsCard;
+export default FollowingCard;

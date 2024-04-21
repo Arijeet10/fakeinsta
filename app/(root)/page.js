@@ -1,7 +1,7 @@
 "use client";
 
 import AllPosts from "@/components/AllPosts";
-import FriendsCard from "@/components/FriendsCard";
+import FollowingCard from "@/components/FollowingCard";
 import NewPost from "@/components/NewPost";
 import ProfileCard from "@/components/ProfileCard";
 import { UserContext } from "@/providers/UserContextProvider";
@@ -22,7 +22,7 @@ const Home = () => {
           <AllPosts />
         </div>
         <div className="sm:col-span-3">
-          <FriendsCard />
+          <FollowingCard />
         </div>
       </div>
     </>
