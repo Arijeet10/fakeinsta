@@ -1,12 +1,16 @@
 "use client";
 
 
+import { logoutUser } from "@/helpers/request";
 import { UserContext } from "@/providers/UserContextProvider";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AiFillInstagram } from "react-icons/ai";
 import { IoMdHome } from "react-icons/io";
 import { IoPeopleSharp } from "react-icons/io5";
+import { IoExit } from "react-icons/io5";
+import toast,{Toaster} from "react-hot-toast";
+
 
 
 const Navbar = () => {
@@ -15,17 +19,31 @@ const Navbar = () => {
 
     const {userData}=useContext(UserContext);
 
+    const handleLogout=async()=>{
+        try {
+            const res=await logoutUser();
+            if(res.success){
+                toast.success(res.message);
+                router.push("/login");
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error("Logout Error");
+        }
+    }
+
 
     return ( 
         <>
-            <div className="p-2 flex items-center justify-between shadow-lg">
-                <div className="flex items-center">
+        <Toaster />
+            <div className="p-2 w-full flex flex-col sm:flex-row sm:items-center sm:justify-between shadow-lg">
+                <div className="flex items-center justify-center">
                     <AiFillInstagram 
                         className="w-16 h-16 text-pink-500 hover:text-violet-500"
                     />
                     <div className="text-2xl font-semibold">FakeInsta</div>
                 </div>
-                <div className="sm:pr-4 flex items-center gap-4 font-medium ">
+                <div className="sm:pr-4 flex items-center justify-between gap-4 font-medium ">
                     <div onClick={()=>router.push("/")} className="flex flex-col items-center hover:text-pink-500 cursor-pointer">
                         <IoMdHome 
                             className="w-5 h-5 "
@@ -38,13 +56,21 @@ const Navbar = () => {
                         />
                         <div>People</div>
                     </div>
-                    <div className="flex flex-col items-center cursor-pointer hover:text-pink-500 ">
+                    <div onClick={()=>router.push(`/profile/${userData?._id}`)} className="flex flex-col items-center cursor-pointer hover:text-pink-500 ">
                         <img 
                             src={userData?.profilePic}
                             alt="user image"
                             className="w-5 h-5 rounded-full"
                         />
                         <div>Profile</div>
+                    </div>
+                    <div onClick={()=>handleLogout()} className="flex flex-col items-center cursor-pointer text-pink-500 hover:text-red-500">
+                        <IoExit 
+                            className="w-5 h-5"
+                        />
+                        <div>
+                            LOGOUT
+                        </div>
                     </div>
                 </div>
             </div>

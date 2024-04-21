@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import { AiFillInstagram } from "react-icons/ai";
 import toast,{Toaster} from "react-hot-toast";
+import Loading from "@/components/Loading";
 
 const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
@@ -56,6 +58,12 @@ const Login = () => {
     <>
       <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] border shadow-md sm:w-[400px] p-2">
       <Toaster />
+        <div className="flex flex-col items-center">
+          <AiFillInstagram 
+            className="w-40 h-40 text-pink-500 hover:text-violet-500"
+          />
+          <div className="text-2xl font-bold">FakeInsta</div>
+        </div>
         <div className="flex items-center justify-between py-4">
           <div className="font-semibold uppercase text-2xl">Login</div>
           <button>
@@ -82,15 +90,12 @@ const Login = () => {
             }
           />
           {loading ? (
-            <AiOutlineLoading3Quarters
-              type="submit"
-              className="bg-blue-700 text-white w-full h-10 p-2 "
-            />
+            <Loading />
           ) : (
             <input
               type="submit"
               value="Login"
-              className="bg-blue-700 text-white hover:bg-blue-500 font-medium uppercase p-2 rounded-sm "
+              className="bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 text-white font-medium uppercase p-2 rounded-sm "
             />
           )}
         </form>

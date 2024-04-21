@@ -98,14 +98,14 @@ const PostCard = ({ post, fetchAllPosts }) => {
               className="w-10 h-10 rounded-full"
             />
           </div>
-          <div className="flex flex-col">
-            <div>{post?.userID?.fullname}</div>
-            <div>{post?.userID?.username}</div>
+          <div className="text-lg font-medium">
+            {post?.userID?.fullname}
           </div>
         </div>
         <div className="">
-          <img src={post?.photo} alt="" className="w-full " />
+          <img src={post?.photo} alt="" className="w-full h-[500px] object-cover" />
         </div>
+        <div>{post?.caption}</div>
         <div className="flex items-center justify-between">
           {/* like count */}
           <div>
@@ -121,8 +121,8 @@ const PostCard = ({ post, fetchAllPosts }) => {
           <div onClick={() => handleLike()} className="flex items-center gap-1">
             {post?.likes?.includes(userData?._id) ? (
               <>
-                <FaHeart className="w-10 h-10" />
-                <div>Liked</div>
+                <FaHeart className="w-10 h-10 text-pink-500" />
+                <div className="font-medium">Liked</div>
               </>
             ) : (
               <>
@@ -138,20 +138,19 @@ const PostCard = ({ post, fetchAllPosts }) => {
             <>
               <FaRegComment className="w-10 h-10" />
             </>
-            <div>Comment</div>
+            <div className="font-medium">Comment</div>
           </div>
         </div>
         {showComment && (
           <>
-            <div className="p-2 grid sm:grid-cols-12 sm:gap-4">
-              <div className="sm:col-span-2">
+          {/* send comment to post */}
+            <div className="p-2 grid sm:grid-cols-12 gap-4">
+              <div className="sm:col-span-10 flex items-center gap-1">
                 <img
                   src={userData?.profilePic}
                   alt="profile image"
                   className="w-10 h-10 rounded-full"
                 />
-              </div>
-              <div className="sm:col-span-8">
                 <input
                   type="text"
                   placeholder="write comment here..."
@@ -160,12 +159,13 @@ const PostCard = ({ post, fetchAllPosts }) => {
                   onChange={(e)=>setComment(e.target.value)}
                 />
               </div>
-              <div className="sm:col-span-2 flex items-center justify-center">
-                <button onClick={()=>handleComment()} className="px-4 py-2 rounded-full font-medium bg-pink-500 hover:bg-violet-500 text-white">
+              <div className="sm:col-span-2 sm:flex sm:items-center sm:justify-center">
+                <button onClick={()=>handleComment()} className="w-full sm:w-auto px-4 py-2 rounded-full font-medium bg-pink-500 hover:bg-violet-500 text-white">
                   Send
                 </button>
               </div>
             </div>
+            {/* list of comments in the post */}
             {post?.comments && postComments?.map((comment,i)=>{
               return(<CommentsCard key={i} comment={comment} />)
             })}

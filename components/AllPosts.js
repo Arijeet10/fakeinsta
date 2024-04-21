@@ -3,17 +3,36 @@
 import { PostsContext } from "@/providers/PostsContextProvider";
 import { useContext } from "react";
 import PostCard from "./PostCard";
+import Loading from "./Loading";
 
 const AllPosts = () => {
-  const { posts, fetchAllPosts } = useContext(PostsContext);
+  const { posts, fetchAllPosts, loading, error } = useContext(PostsContext);
   //console.log(posts);
   return (
     <>
-      <div className="flex flex-col gap-4">
-        {posts?.map((post, i) => {
-          return <PostCard post={post} fetchAllPosts={fetchAllPosts} key={i} />;
-        })}
-      </div>
+      {loading ? (
+        <><Loading /></>
+      ) : (
+        <>
+          {error ? (
+            <div>Oops! Something went wrong...</div>
+          ) : (
+            <>
+              <div className="flex flex-col gap-4">
+                {posts?.map((post, i) => {
+                  return (
+                    <PostCard
+                      post={post}
+                      fetchAllPosts={fetchAllPosts}
+                      key={i}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };

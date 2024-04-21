@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiFillInstagram, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
@@ -68,15 +69,13 @@ const Signup = () => {
     <>
       <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] border shadow-md sm:w-[500px] p-2">
         <Toaster />
-        <div className="flex items-center justify-between py-4">
-          <div className="font-semibold uppercase text-2xl">
-            Create an account
-          </div>
-          <button>
-            <IoCloseCircleSharp className="w-10 h-10 hover:text-red-500" />
-          </button>
+        <div className="flex items-center justify-center gap-6">
+          <AiFillInstagram 
+            className="w-40 h-40 text-pink-500 hover:text-violet-500"
+          />
+          <div className="text-2xl font-bold">FakeInsta</div>
         </div>
-        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
+        <form onSubmit={(e) => handleSubmit(e)} className=" flex flex-col gap-4">
           <div className="">
             <div onClick={() => handleProfilePic()} className="cursor-pointer">
               <input
@@ -138,12 +137,12 @@ const Signup = () => {
             }
           />
           {loading ? (
-            <AiOutlineLoading3Quarters type="submit" className="bg-blue-700 text-white w-full h-10 p-2 " />
+<Loading />
           ) : (
             <input
               type="submit"
               value="Signup"
-              className="bg-blue-700 text-white hover:bg-blue-500 font-medium uppercase p-2 rounded-sm "
+              className=" bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 text-white font-medium uppercase p-2 rounded-sm "
             />
           )}
         </form>

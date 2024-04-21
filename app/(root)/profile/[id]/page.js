@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import { getUserPosts } from "@/helpers/request";
 import { UserContext } from "@/providers/UserContextProvider";
 import axios from "axios";
@@ -87,7 +88,7 @@ const Profile = ({ params }) => {
     <>
       <Toaster />
       {loading ? (
-        <div>Loading...</div>
+        <><Loading /></>
       ) : (
         <>
           {error ? (
@@ -96,16 +97,16 @@ const Profile = ({ params }) => {
             <>
               {/* Profile Information */}
               <div className="p-6 grid items-start gap-4 grid-flow-row sm:grid-flow-col sm:grid-cols-12">
-                <div className="sm:col-span-9 md:col-span-6 lg:col-span-4 flex items-center justify-center">
+                <div className="sm:col-span-7 md:col-span-6 lg:col-span-4 flex items-center justify-center">
                   <div className="  rounded-full p-1 bg-gradient-to-r from-pink-500 to-violet-500">
                     <img
                       src={profile?.profilePic}
                       alt="user photo"
-                      className="w-96 h-96 rounded-full border-2"
+                      className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3 md:col-span-6 lg:col-span-8 flex flex-col items-start gap-4">
+                <div className="sm:col-span-5 md:col-span-6 lg:col-span-8 flex flex-col items-start gap-4">
                   <div className="text-4xl font-semibold">
                     {profile?.fullname}
                   </div>
@@ -150,17 +151,17 @@ const Profile = ({ params }) => {
                       {Boolean(userData?.following.includes(profile?._id)) ? (
                         <div
                           onClick={() => followUnfollow(profile?._id)}
-                          className="border shadow-md p-2 rounded-md hover:bg-pink-500 hover:text-white flex items-center justify-center gap-1"
+                          className="border shadow-md p-2 rounded-md hover:bg-pink-500 hover:text-white cursor-pointer flex items-center justify-center gap-1"
                         >
-                          <IoPersonRemove className="w-10 h-10 hover:text-violet-500" />
+                          <IoPersonRemove className="w-10 h-10 " />
                           <div className="text-2xl font-semibold">UNFOLLOW</div>
                         </div>
                       ) : (
                         <div
                           onClick={() => followUnfollow(profile?._id)}
-                          className="border shadow-md p-2 rounded-md hover:bg-violet-500 hover:text-white flex items-center justify-center gap-1"
+                          className="border shadow-md p-2 rounded-md hover:bg-violet-500 hover:text-white cursor-pointer flex items-center justify-center gap-1"
                         >
-                          <IoPersonAdd className="w-10 h-10 hover:text-violet-500" />
+                          <IoPersonAdd className="w-10 h-10 " />
                           <div className="text-2xl font-semibold">FOLLOW</div>
                         </div>
                       )}

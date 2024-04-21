@@ -7,9 +7,12 @@ import { IoPersonRemove } from "react-icons/io5";
 
 import toast, { Toaster } from "react-hot-toast";
 import { UserContext } from "@/providers/UserContextProvider";
+import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 const People = () => {
 
+  const router=useRouter();
 
   const [people, setPeople] = useState();
   const [loading, setLoading] = useState(false);
@@ -69,7 +72,7 @@ const People = () => {
         <Toaster />
         <div className="py-4 text-3xl font-medium">Find People to Follow</div>
         {loading ? (
-          <div>Loading....</div>
+          <><Loading /></>
         ) : (
           <>
             {error ? (
@@ -83,7 +86,7 @@ const People = () => {
                       return (
                         <div key={index}>
                           <div className="py-4 flex items-center justify-between">
-                            <div className="flex items-center gap-2">
+                            <div onClick={()=>router.push(`/profile/${data?._id}`)} className="flex items-center gap-2 cursor-pointer">
                               <img
                                 src={data?.profilePic}
                                 alt="profile image"

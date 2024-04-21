@@ -57,7 +57,7 @@ const NewPost = ({ userData, fetchCurrentUser }) => {
 
   return (
     <>
-      <div className="p-2 border border-black rounded-md shadow-lg">
+      <div className="p-2 border rounded-md shadow-lg">
         <Toaster />
         <div className="font-medium text-2xl">Create New Post</div>
         <div className="border-t w-full" />
