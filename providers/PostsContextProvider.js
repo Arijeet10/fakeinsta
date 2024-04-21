@@ -12,7 +12,7 @@ const PostsContextProvider=({children})=>{
 
     const fetchAllPosts=async()=>{
         try {
-            const res=await axios.get(url+"api/user/allposts");
+            const res=await axios.get(url+"api/posts/allposts");
             setPosts(res?.data?.posts);
         } catch (error) {
             console.log(error);

@@ -14,7 +14,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
   const [showComment, setShowComment] = useState(false);
   const [comment,setComment]=useState("");
   const [postComments,setPostComments]=useState();
-  console.log(postComments)
+ // console.log(postComments)
 
   const [likeMessage, setLikeMessage] = useState("Like");
 
@@ -29,8 +29,8 @@ const PostCard = ({ post, fetchAllPosts }) => {
     };
     //console.log(payload)
     try {
-      const res=await axios.post(url+"api/user/post/comments-for-post/",payload)
-      console.log(res.data);
+      const res=await axios.post(url+"api/posts/comments-for-post/",payload)
+      //console.log(res.data);
       if(res.status){
         setPostComments(res?.data?.commentList?.comments)
       }
@@ -58,7 +58,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
       comment
     }
     try {
-      const res=await axios.post(url+"api/user/post/comment",payload)
+      const res=await axios.post(url+"api/posts/comment",payload)
       //console.log(res)
       if(res.status){
         setComment("");
@@ -77,7 +77,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
     };
     //console.log(postID)
     try {
-      const res = await axios.post(url + "api/user/post/like", payload);
+      const res = await axios.post(url + "api/posts/like", payload);
       if (res.status) {
         setLikeMessage(res.data.message);
         fetchAllPosts();

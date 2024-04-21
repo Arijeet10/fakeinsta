@@ -16,29 +16,41 @@ export async function POST(req) {
       );
     }
 
-    const {personID} = await req.json();
+    const { personID } = await req.json();
     console.log(personID);
 
     //unfollow person
-    if (user?.followers.includes(personID)) {
-      const removeFriend = await SocialUserModel.updateOne(
+    if (user?.following.includes(personID)) {
+      const removeFollowing = await SocialUserModel.updateOne(
         { _id: user._id },
         {
-          $pull: { followers: personID },
+          $pull: { following: personID },
         }
       );
-      console.log("Unfollow",removeFriend)
+      //remove the followers data from the unfollowed person followers field
+      const removeFollowers = await SocialUserModel.updateOne(
+        { _id: personID },
+        {
+          $pull: { followers: user._id },
+        }
+      );
+      console.log("Unfollow", removeFollowing, removeFollowers);
       return NextResponse.json({ message: "Unfollowed" }, { status: 201 });
     }
 
     //follow person
-    const addFriend = await SocialUserModel.updateOne(
+    const addFollowing = await SocialUserModel.updateOne(
       { _id: user._id },
       {
-        $push: { followers: personID },
+        $push: { following: personID },
       }
     );
-    console.log("FOllow",addFriend)
+    //add the followers data to the followed person followers field
+    const addFollowers = await SocialUserModel.updateOne(
+      { _id: personID },
+      { $push: { followers: user._id } }
+    );
+    console.log("FOllow", addFollowing, addFollowers);
     return NextResponse.json({ message: "Followed" }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

@@ -19,7 +19,7 @@ const People = () => {
 
 
   // useEffect(() => {
-  //   console.log(Boolean(userData?.followers.includes("6623f8b37d9797997b8b2937")))
+  //   console.log(Boolean(userData?.following.includes("6623f8b37d9797997b8b2937")))
   // }, [userData])
   
 
@@ -29,12 +29,12 @@ const People = () => {
       personID
     }
     try {
-        const res=await axios.post("api/user/follow-unfollow/",payload);
+        const res=await axios.post("/api/user/follow-unfollow/",payload);
         //console.log(res.data)
         if(res.status){
             toast.success(res.data.message);
 
-            //to view updated follow unfollow stats
+            //to get updated following stats
             fetchCurrentUser();
         }
     } catch (error) {
@@ -47,7 +47,7 @@ const People = () => {
     (async function fetchPeople() {
       try {
         setLoading(true);
-        const res = await axios.get("api/user/discover/");
+        const res = await axios.get("/api/user/discover/");
         //console.log(res.data.people);
         if (res.status) {
           toast.success(res.data.message);
@@ -94,8 +94,8 @@ const People = () => {
                               </div>
                             </div>
                             <div>
-                            {/* to follow or unfollow  */}
-                                {Boolean(userData?.followers.includes(data?._id))?(
+                            {/* to follow or unfollow a person */}
+                                {Boolean(userData?.following.includes(data?._id))?(
                                     <IoPersonRemove onClick={()=>followUnfollow(data?._id)} className="w-10 h-10 hover:text-violet-500" />
 
                                 ):(
