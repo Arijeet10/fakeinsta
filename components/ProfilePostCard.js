@@ -6,35 +6,64 @@ import { MdEdit } from "react-icons/md";
 
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/providers/UserContextProvider";
-import { deletePost } from "@/helpers/request";
+import { deletePost, editPost } from "@/helpers/request";
 import toast, { Toaster } from "react-hot-toast";
 import { PostsContext } from "@/providers/PostsContextProvider";
 import { IoIosClose } from "react-icons/io";
 
-const ProfilePostCard = ({ post, handlePostModal }) => {
+const ProfilePostCard = ({ post, handlePostModal, setBgDarkEffect, closeBackgroundDarkEffect, confirmDelete, setConfirmDelete, editModal, setEditModal }) => {
   const [modal, setModal] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [caption, setCaption] = useState();
   const { userData } = useContext(UserContext);
   const { fetchAllPosts } = useContext(PostsContext);
 
-  //open delete confirmation popup
-  const openConfirmDelete = () => {
-    setConfirmDelete(true);
+  //save new caption for post
+  const handleSaveCaption=async(postID)=>{
+    //console.log(caption);
+    const payload={
+      postID,
+      caption,
+    }
+    try {
+      const res=await editPost(payload);
+      if(res){
+        await fetchAllPosts();
+        toast.success(res.message);
+        setEditModal(false);
+        closeBackgroundDarkEffect();
+        setCaption("");
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Edit Caption Error");
+    }
+  }
+
+  //open Edit Caption popup
+  const openEditCaption = () => {
+    setBgDarkEffect(true);
+    setEditModal(true);
     setModal(false);
   };
 
 
 
-  
+  //open delete confirmation popup
+  const openConfirmDelete = () => {
+    setConfirmDelete(true);
+    setModal(false);
+    setBgDarkEffect(true);
+  };
 
   //to delete your post
   const handleDeletePost = async (postID) => {
-    console.log(postID)
+    //console.log(postID);
     try {
       const res = await deletePost(postID);
       toast.success(res);
       await fetchAllPosts();
       setConfirmDelete(false);
+      closeBackgroundDarkEffect();
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +71,7 @@ const ProfilePostCard = ({ post, handlePostModal }) => {
 
   return (
     <>
-      <div className="border shadow-sm rounded-sm">
+      <div className="relative border shadow-sm rounded-sm">
         <Toaster />
 
         {/* get edit delete options if for logged in user only */}
@@ -55,7 +84,10 @@ const ProfilePostCard = ({ post, handlePostModal }) => {
             {modal && (
               <>
                 <div className=" absolute top-10 right-7 z-50 bg-white   border rounded-lg shadow-md ">
-                  <div className="p-2 flex items-center justify-between hover:text-indigo-500">
+                  <div
+                    onClick={() => openEditCaption()}
+                    className="p-2 flex items-center justify-between hover:text-indigo-500"
+                  >
                     <div>Edit</div>
                     <MdEdit className="w-8 h-8 " />
                   </div>
@@ -82,19 +114,43 @@ const ProfilePostCard = ({ post, handlePostModal }) => {
 
         {/* Post Caption */}
         <div>{post?.caption}</div>
+
       </div>
 
-      {/* delete confirm message popoup */}
+        {/* Edit Caption popup */}
+        {editModal && (
+          <>
+            <div className="p-4 w-full sm:w-[300px] border rounded-md fixed top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] z-50 bg-white shadow-md">
+              <div>
+                <textarea
+                  rows="4"
+                  type="text"
+                  placeholder={`${post?.caption || ""}`}
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                  className=" focus:outline-none w-full  p-2"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <button onClick={()=>handleSaveCaption(post?._id)} className="bg-pink-700 text-white font-medium hover:bg-violet-500 px-6 py-2 rounded-md">
+                  Save
+                </button>
+                <button onClick={()=>closeBackgroundDarkEffect()} className="bg-pink-700 text-white font-medium hover:bg-violet-500 px-6 py-2 rounded-md">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+
+
+      {/* delete confirm message popup */}
       {confirmDelete && (
         <>
-          <div
-            onClick={() => setConfirmDelete(false)}
-            className="bg-[rgba(0,0,0,0.7)] fixed inset-0 "
-          />
           <div className="w-full sm:w-[500px] p-2 rounded-lg fixed bg-white z-50 top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] ">
             <div className="py-2 flex items-center justify-end">
               <IoIosClose
-                onClick={() => setConfirmDelete(false)}
+                onClick={() => closeBackgroundDarkEffect()}
                 className="h-10 w-10 hover:text-red-500"
               />
             </div>
@@ -109,7 +165,7 @@ const ProfilePostCard = ({ post, handlePostModal }) => {
                 Yes
               </button>
               <button
-                onClick={() => setConfirmDelete(false)}
+                onClick={() => closeBackgroundDarkEffect()}
                 className="px-4 py-2 rounded-lg border bg-violet-500 text-white hover:bg-red-500"
               >
                 No

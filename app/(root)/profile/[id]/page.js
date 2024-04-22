@@ -20,8 +20,25 @@ const Profile = ({ params }) => {
   const [profile, setProfile] = useState();
   const [profilePosts, setProfilePosts] = useState();
   const [postModal, setPostModal] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const [photoURL, setPhotoURL] = useState();
+  const [bgDarkEffect,setBgDarkEffect]=useState(false);
   const { userData, fetchCurrentUser } = useContext(UserContext);
+
+  //close background darken effect and also other modals tooo
+  const closeBackgroundDarkEffect=()=>{
+    setBgDarkEffect(false);
+    setPostModal(false);
+    setConfirmDelete(false);
+    setEditModal(false);
+  }
+
+//close expanded post photo
+  const handleCloseOpenedPost=()=>{
+    setPostModal(false);
+    setBgDarkEffect(false);
+  }
 
   //follow or unfollow people
   const followUnfollow = async (personID) => {
@@ -45,6 +62,7 @@ const Profile = ({ params }) => {
 
   const handlePostModal = (photoURL) => {
     setPostModal(true);
+    setBgDarkEffect(true);
     setPhotoURL(photoURL);
   };
 
@@ -100,6 +118,7 @@ const Profile = ({ params }) => {
             <div>Oops! Something went wrong...</div>
           ) : (
             <>
+            
               {/* Profile Information */}
               <div className="p-6 grid items-start gap-4 grid-flow-row sm:grid-flow-col sm:grid-cols-12">
                 <div className="sm:col-span-7 md:col-span-6 lg:col-span-4 flex items-center justify-center">
@@ -182,6 +201,7 @@ const Profile = ({ params }) => {
                   )}
                 </div>
               </div>
+
               {/* Profile Posts */}
               <div className="sm:p-2">
                 <div className="text-center text-3xl font-bold">POSTS</div>
@@ -189,7 +209,7 @@ const Profile = ({ params }) => {
                   {profilePosts &&
                     profilePosts.map((post, index) => {
                       return (
-                        <ProfilePostCard key={index} post={post} handlePostModal={handlePostModal} />
+                        <ProfilePostCard key={index} post={post} handlePostModal={handlePostModal} setBgDarkEffect={setBgDarkEffect} closeBackgroundDarkEffect={closeBackgroundDarkEffect} confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete} editModal={editModal} setEditModal={setEditModal} />
                       );
                     })}
                 </div>
@@ -198,22 +218,28 @@ const Profile = ({ params }) => {
           )}
         </>
       )}
+
       {/* open posts to view pictures */}
       {postModal && (
         <>
-          <div
-            onClick={() => setPostModal(false)}
-            className="bg-[rgba(0,0,0,0.7)] fixed inset-0 "
-          />
           <div className="fixed w-full sm:w-[700px] z-50 top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%]">
             <img src={photoURL} alt="photo" className="w-full  h-[500px] object-cover" />
             <IoIosClose 
-            onClick={()=>setPostModal(false)}
+            onClick={()=>closeBackgroundDarkEffect()}
               className="absolute top-0 right-0 w-5 h-5 text-white  hover:bg-red-500 rounded-full"
             />
           </div>
         </>
       )}
+
+      {/* background darken effect when modals appear */}
+      {bgDarkEffect && (
+        <div
+            onClick={() => closeBackgroundDarkEffect()}
+            className="bg-[rgba(0,0,0,0.7)] fixed inset-0 "
+          />
+      )}
+
     </>
   );
 };

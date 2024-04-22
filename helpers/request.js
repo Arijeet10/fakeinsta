@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 const url=process.env.NEXT_PUBLIC_ROOT_URL;
 
-// get posts of particular profile from api
+// request to get posts of particular profile 
 export async function getUserPosts(id){
     const payload={
         profileID:id,
@@ -19,7 +19,7 @@ export async function getUserPosts(id){
     }
 }
 
-//logout user
+//logout user request
 export async function logoutUser(){
     try {
         const res=await axios.get("/api/logout/");
@@ -29,7 +29,29 @@ export async function logoutUser(){
     }
 }
 
-//delete a post
+//edit caption request
+export async function editPost(payload){
+    try {
+        //console.log(payload);
+        const res=await fetch(url+"api/posts/editcaption/",{
+            method:"PATCH",
+            headers:{
+                accept:"application/json"
+            },
+            body:JSON.stringify(payload)
+        });
+        if(res.ok){
+            const response=await res.json();
+            //console.log(response);
+            return response;
+        }
+
+    } catch (error) {
+        return NextResponse.json("Edit Error:",error);
+    }
+}
+
+//delete a post request
 export async function deletePost(postID){
 
     try {
@@ -47,7 +69,7 @@ export async function deletePost(postID){
         if(res.ok){
             const response=await res.json();
             console.log(response);
-            return response.message
+            return response.message;
         }
         if(res.status){
             return res.data;
