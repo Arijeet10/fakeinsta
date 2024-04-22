@@ -74,7 +74,7 @@ const Signup = () => {
     <>
       <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] sm:w-[500px] w-full p-2">
         <Toaster />
-        <div className="pb-4 flex items-center justify-center gap-6">
+        <div className="pb-4 flex flex-col items-center justify-center">
           <AiFillInstagram 
             className="w-40 h-40 text-pink-500 hover:text-violet-500"
           />

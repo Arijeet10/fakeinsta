@@ -10,9 +10,12 @@ import { GoComment } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
 import CommentsCard from "./CommentsCard";
 import { PostsContext } from "@/providers/PostsContextProvider";
+import { useRouter } from "next/navigation";
 
 
 const FeedPostCard = ({post}) => {
+
+  const router=useRouter();
 
   const { fetchAllPosts } = useContext(PostsContext);
 
@@ -97,7 +100,7 @@ const FeedPostCard = ({post}) => {
   return (
     <>
       <div className="w-full p-2 border shadow-lg flex flex-col gap-4">
-        <div className="flex items-center gap-2">
+        <div onClick={()=>router.push(`/profile/${post?.userID?._id}`)} className="flex items-center gap-2 cursor-pointer">
           <div>
             <img
               src={post?.userID?.profilePic}
