@@ -26,7 +26,7 @@ const PostsContextProvider=({children})=>{
 
     useEffect(() => {
       fetchAllPosts();
-    }, [])
+    }, [posts])
     
     return(
         <PostsContext.Provider value={{posts,fetchAllPosts,loading,error}}>

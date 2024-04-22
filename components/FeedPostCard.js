@@ -28,7 +28,7 @@ const FeedPostCard = ({post}) => {
 
   const [likeMessage, setLikeMessage] = useState("Like");
 
-  const { userData,fetchCurrentUser } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
   // console.log(post?.comments)
 
@@ -90,7 +90,6 @@ const FeedPostCard = ({post}) => {
       const res = await axios.post("/api/posts/like", payload);
       if (res.status) {
         await fetchAllPosts();
-        await fetchCurrentUser();
         setLikeMessage(res.data.message);
       }
     } catch (error) {
@@ -126,7 +125,7 @@ const FeedPostCard = ({post}) => {
 
           {/* comment count */}
           <div>
-            {post?.comments?.length?post.comments.length+"comments":"No Comments"}
+            {post?.comments.length?post.comments.length+"comments":"No Comments"}
           </div>
         </div>
         <div className="border-t w-full" />
