@@ -24,7 +24,7 @@ const AllPosts = () => {
                   return (
                     <PostCard
                       post={post}
-                      fetchAllPosts={fetchAllPosts}
+                      
                       key={i}
                     />
                   );

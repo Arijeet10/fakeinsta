@@ -9,10 +9,15 @@ import { GoComment } from "react-icons/go";
 
 import { FaHeart } from "react-icons/fa";
 import CommentsCard from "./CommentsCard";
+import { PostsContext } from "@/providers/PostsContextProvider";
 
 const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
-const PostCard = ({ post, fetchAllPosts }) => {
+const PostCard = ({post}) => {
+
+  const { fetchAllPosts } = useContext(PostsContext);
+
+
   //console.log(post)
   const [showComment, setShowComment] = useState(false);
   const [comment,setComment]=useState("");
