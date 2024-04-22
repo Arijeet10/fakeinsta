@@ -28,7 +28,7 @@ const FeedPostCard = ({post}) => {
 
   const [likeMessage, setLikeMessage] = useState("Like");
 
-  const { userData } = useContext(UserContext);
+  const { userData,fetchCurrentUser } = useContext(UserContext);
 
   // console.log(post?.comments)
 
@@ -90,6 +90,7 @@ const FeedPostCard = ({post}) => {
       const res = await axios.post("/api/posts/like", payload);
       if (res.status) {
         await fetchAllPosts();
+        await fetchCurrentUser();
         setLikeMessage(res.data.message);
       }
     } catch (error) {
