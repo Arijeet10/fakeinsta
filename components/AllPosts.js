@@ -1,13 +1,18 @@
 "use client";
 
 import { PostsContext } from "@/providers/PostsContextProvider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import PostCard from "./PostCard";
-import Loading from "./Loading";
 
 const AllPosts = () => {
   const { posts, fetchAllPosts, error } = useContext(PostsContext);
   //console.log(posts);
+
+  useEffect(() => {
+    fetchAllPosts();
+  }, [])
+  
+
   return (
     <>
           {error ? (
