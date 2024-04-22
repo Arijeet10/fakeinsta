@@ -11,6 +11,7 @@ import { FaHeart } from "react-icons/fa";
 import CommentsCard from "./CommentsCard";
 import { PostsContext } from "@/providers/PostsContextProvider";
 import { useRouter } from "next/navigation";
+import toast,{Toaster} from "react-hot-toast";
 
 
 const FeedPostCard = ({post}) => {
@@ -42,7 +43,7 @@ const FeedPostCard = ({post}) => {
       const res=await axios.post("/api/posts/comments-for-post/",payload)
       //console.log(res.data);
       if(res.status){
-        setPostComments(res?.data?.commentList?.comments)
+        setPostComments(res?.data?.commentList?.comments);
       }
     } catch (error) {
       console.log(error);
@@ -74,9 +75,11 @@ const FeedPostCard = ({post}) => {
         setComment("");
         await fetchAllPosts();
         await getPostComments();
+        toast.success("Comment Posted")
       }
     } catch (error) {
       console.log(error);
+      toast.error("Comment Error")
     }
   }
 
@@ -89,6 +92,15 @@ const FeedPostCard = ({post}) => {
     try {
       const res = await axios.post("/api/posts/like", payload);
       if (res.status) {
+        if(res.data.message=="Like"){
+          toast('Disliked', {
+            icon: '👎',
+          });
+        }else if(res.data.message=="Liked"){
+          toast('Liked', {
+            icon: '👍',
+          });
+        }
         await fetchAllPosts();
         setLikeMessage(res.data.message);
       }
@@ -99,6 +111,7 @@ const FeedPostCard = ({post}) => {
 
   return (
     <>
+    <Toaster />
       <div className="w-full p-2 border shadow-lg flex flex-col gap-4">
         <div onClick={()=>router.push(`/profile/${post?.userID?._id}`)} className="flex items-center gap-2 cursor-pointer">
           <div>
