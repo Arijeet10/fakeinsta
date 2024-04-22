@@ -24,11 +24,11 @@ const Home = () => {
           {error ? (
             <div>Oops! Something went wrong...</div>
           ) : (
-            <div className="p-4 grid sm:grid-cols-12 sm:gap-4">
-              <div className="sm:col-span-5 md:col-span-4">
+            <div className="p-1 sm:p-4 sm:grid sm:grid-cols-12 sm:gap-4">
+              <div className="hidden sm:block sm:col-span-5 md:col-span-4">
                 <ProfileCard userData={userData} />
               </div>
-              <div className="sm:col-span-7 md:col-span-5 flex flex-col gap-8">
+              <div className="sm:col-span-7 md:col-span-5 flex flex-col gap-6">
                 <NewPost
                   userData={userData}
                   fetchCurrentUser={fetchCurrentUser}

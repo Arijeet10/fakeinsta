@@ -7,61 +7,59 @@ import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiFillInstagram } from "react-icons/ai";
-import toast,{Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Loading from "@/components/Loading";
 
 const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
-
 const Login = () => {
-
-    const router=useRouter();
+  const router = useRouter();
 
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
     console.log(loginData);
-    const formData=new FormData();
-    formData.set("email",loginData.email);
-    formData.set("password",loginData.password);
+    const formData = new FormData();
+    formData.set("email", loginData.email);
+    formData.set("password", loginData.password);
     // console.log(formData)
     try {
-        const res=await axios.post(url+"api/login",formData);
-        console.log(res)
-        if(res.status){
-            toast.success(res.data.message);
-            setLoginData({
-                email: "",
-                password: "",
-              });
-            router.push("/");
-        }else{
-            toast.custom(res.data.message);
-        }
+      const res = await axios.post(url + "api/login", formData);
+      console.log(res);
+      if (res.status) {
+        toast.success(res.data.message);
+        setLoginData({
+          email: "",
+          password: "",
+        });
+        toast("Redirecting to HomePage", {
+          duration: 5000,
+        });
+        router.push("/");
+      } else {
+        toast.custom(res.data.message);
+      }
     } catch (error) {
-        toast.error(error?.response?.data?.message)
-        console.log(error)
-    } finally{
-        setLoading(false);
+      toast.error(error?.response?.data?.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-
   };
 
   return (
     <>
       <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] sm:w-[400px] w-full p-2">
-      <Toaster />
+        <Toaster />
         <div className="pb-4 flex flex-col items-center">
-          <AiFillInstagram 
-            className="w-40 h-40 text-pink-500 hover:text-violet-500"
-          />
+          <AiFillInstagram className="w-40 h-40 text-pink-500 hover:text-violet-500" />
           <div className="text-2xl font-bold">FakeInsta</div>
         </div>
 

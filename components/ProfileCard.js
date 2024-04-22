@@ -1,10 +1,33 @@
 "use client";
 
+import { getUserPosts } from "@/helpers/request";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ProfileCard = ({ userData }) => {
 
   const router=useRouter();
+  const [profilePosts,setProfilePosts]=useState();
+  const [error,setError]=useState(false);
+
+    //get profile posts
+    useEffect(() => {
+      if (userData) {
+        (async function fetchPosts() {
+          try {
+            const res = await getUserPosts(userData._id);
+            //console.log(res);
+            if (res) {
+              // toast.success(res.message);
+              setProfilePosts(res.profilePosts);
+            }
+          } catch (error) {
+            //console.log(error);
+            setError(true);
+          }
+        })();
+      }
+    }, [userData]);
 
   return (
     <>
@@ -19,7 +42,8 @@ const ProfileCard = ({ userData }) => {
         <div>{userData?.username}</div>
         <div className="py-4 flex items-center justify-between w-full">
           <div className="flex flex-col items-center">
-            <div>0</div>
+          {/* to handle error while getting posts data */}
+            {error?<div>-</div>:<div>{profilePosts?.length}</div>}
             <div className="text-lg font-semibold">Posts</div>
           </div>
           <div className="flex flex-col items-center">

@@ -6,14 +6,10 @@ import PostCard from "./PostCard";
 import Loading from "./Loading";
 
 const AllPosts = () => {
-  const { posts, fetchAllPosts, loading, error } = useContext(PostsContext);
+  const { posts, fetchAllPosts, error } = useContext(PostsContext);
   //console.log(posts);
   return (
     <>
-      {loading ? (
-        <><Loading /></>
-      ) : (
-        <>
           {error ? (
             <div>Oops! Something went wrong...</div>
           ) : (
@@ -31,8 +27,6 @@ const AllPosts = () => {
               </div>
             </>
           )}
-        </>
-      )}
     </>
   );
 };

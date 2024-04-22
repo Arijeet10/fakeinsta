@@ -8,6 +8,9 @@ import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoPersonAdd } from "react-icons/io5";
 import { IoPersonRemove } from "react-icons/io5";
+import { IoIosClose } from "react-icons/io";
+
+
 
 const Profile = ({ params }) => {
   const [loading, setLoading] = useState(false);
@@ -106,7 +109,7 @@ const Profile = ({ params }) => {
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-5 md:col-span-6 lg:col-span-8 flex flex-col items-start gap-4">
+                <div className="sm:col-span-5 md:col-span-6 lg:col-span-8 flex flex-col gap-4">
                   <div className="text-4xl font-semibold">
                     {profile?.fullname}
                   </div>
@@ -125,8 +128,16 @@ const Profile = ({ params }) => {
                     porttitor.
                   </div>
 
-                  {/* Following and Followers panel */}
-                  <div className="flex items-center gap-4">
+                  {/*Posts, Following and Followers Count panel */}
+                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-col ">
+                      <div>
+                        {profilePosts?.length}
+                      </div>
+                      <div className="text-lg font-semibold">
+                        Posts
+                      </div>
+                    </div>
                     <div className="flex flex-col ">
                       <div>
                         {profile?.following?.length}
@@ -170,9 +181,9 @@ const Profile = ({ params }) => {
                 </div>
               </div>
               {/* Profile Posts */}
-              <div className="p-2">
+              <div className="sm:p-2">
                 <div className="text-center text-3xl font-bold">POSTS</div>
-                <div className="border p-2 grid items-center justify-center gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="sm:border sm:p-2  grid sm:items-center sm:justify-center gap-2 sm:grid-cols-2 lg:grid-cols-4">
                   {profilePosts &&
                     profilePosts.map((post, index) => {
                       return (
@@ -184,7 +195,7 @@ const Profile = ({ params }) => {
                           <img
                             src={post.photo}
                             alt="post image"
-                            className="object-cover w-[400px] sm:w-[600px] h-[500px]"
+                            className="object-cover w-full rounded-sm sm:w-[600px] h-[500px]"
                           />
                         </div>
                       );
@@ -195,6 +206,7 @@ const Profile = ({ params }) => {
           )}
         </>
       )}
+      {/* open posts to view pictures */}
       {postModal && (
         <>
           <div
@@ -202,7 +214,11 @@ const Profile = ({ params }) => {
             className="bg-[rgba(0,0,0,0.7)] fixed inset-0 "
           />
           <div className="fixed w-full sm:w-[700px] z-50 top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%]">
-            <img src={photoURL} alt="photo" className="" />
+            <img src={photoURL} alt="photo" className="w-full  h-[500px] object-cover" />
+            <IoIosClose 
+            onClick={()=>setPostModal(false)}
+              className="absolute top-0 right-0 w-5 h-5 text-white  hover:bg-red-500 rounded-full"
+            />
           </div>
         </>
       )}

@@ -57,6 +57,9 @@ const Signup = () => {
           password: "",
           profilePic: "",
         });
+        toast("Redirecting to Login Page", {
+          duration: 5000,
+        });
         router.push("/login");
       } else {
         toast.custom(res.data.message);

@@ -3,7 +3,10 @@
 import { UserContext } from "@/providers/UserContextProvider";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { FaRegComment, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { GoComment } from "react-icons/go";
+
+
 import { FaHeart } from "react-icons/fa";
 import CommentsCard from "./CommentsCard";
 
@@ -118,7 +121,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
         </div>
         <div className="border-t w-full" />
         <div className="flex items-center justify-between">
-          <div onClick={() => handleLike()} className="flex items-center gap-1">
+          <div onClick={() => handleLike()} className="flex items-center gap-1 cursor-pointer">
             {post?.likes?.includes(userData?._id) ? (
               <>
                 <FaHeart className="w-10 h-10 text-pink-500" />
@@ -126,17 +129,17 @@ const PostCard = ({ post, fetchAllPosts }) => {
               </>
             ) : (
               <>
-                <FaRegHeart className="w-10 h-10" />
+                <FaRegHeart className="w-10 h-10 hover:text-pink-500" />
                 <div>{likeMessage}</div>
               </>
             )}
           </div>
           <div
             onClick={() => openComments()}
-            className="flex items-center gap-1"
+            className="flex items-center gap-1 cursor-pointer"
           >
             <>
-              <FaRegComment className="w-10 h-10" />
+              <GoComment className="w-10 h-10 hover:text-pink-500" />
             </>
             <div className="font-medium">Comment</div>
           </div>
