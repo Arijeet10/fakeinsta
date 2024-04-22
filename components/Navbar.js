@@ -36,7 +36,7 @@ const Navbar = () => {
     return ( 
         <>
         <Toaster />
-            <div className="p-2 w-full flex flex-col sm:flex-row sm:items-center sm:justify-between shadow-lg">
+            <div className="sticky top-0 bg-white z-50 p-2 w-full flex flex-col sm:flex-row sm:items-center sm:justify-between shadow-lg">
                 <div className="flex items-center justify-center">
                     <AiFillInstagram 
                         className="w-16 h-16 text-pink-500 hover:text-violet-500"
