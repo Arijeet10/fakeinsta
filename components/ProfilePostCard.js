@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/providers/UserContextProvider";
 import { deletePost } from "@/helpers/request";
 import toast, { Toaster } from "react-hot-toast";
@@ -23,14 +23,18 @@ const ProfilePostCard = ({ post, handlePostModal }) => {
     setModal(false);
   };
 
+
+
+  
+
   //to delete your post
   const handleDeletePost = async (postID) => {
     console.log(postID)
     try {
       const res = await deletePost(postID);
-      toast.success(res.message);
-      setConfirmDelete(false);
+      toast.success(res);
       await fetchAllPosts();
+      setConfirmDelete(false);
     } catch (error) {
       console.log(error);
     }

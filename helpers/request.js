@@ -1,6 +1,7 @@
 // API Requests
 
 import axios from "axios";
+import { NextResponse } from "next/server";
 
 const url=process.env.NEXT_PUBLIC_ROOT_URL;
 
@@ -43,13 +44,16 @@ export async function deletePost(postID){
             },
             body:JSON.stringify(payload)
         });
-
-        console.log(res);
+        if(res.ok){
+            const response=await res.json();
+            console.log(response);
+            return response.message
+        }
         if(res.status){
             return res.data;
         }
 
     } catch (error) {
-        console.log(error);
+        return NextResponse.json("Delete Error:",error);
     }
 }

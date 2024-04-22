@@ -28,8 +28,11 @@ export async function DELETE(req){
             return NextResponse.json({message:"Post not found in database"},{status:404});
         }
 
+
         //only delete post of the user who is logged in 
-        if(post.userID!==user._id){
+        const post_id=String(post.userID);
+        const user_id=String(user._id);
+        if(post_id!==user_id){
             return NextResponse.json({message:"Cannot Delete Post of others"},{status:404});
         }
 
