@@ -46,13 +46,13 @@ const Navbar = () => {
                 <div className="sm:pr-4 flex items-center justify-between gap-4 font-medium ">
                     <div onClick={()=>router.push("/")} className="flex flex-col items-center hover:text-pink-500 cursor-pointer">
                         <IoMdHome 
-                            className="w-5 h-5 "
+                            className="w-7 h-7 "
                         />
                         <div className="">Feed</div>
                     </div>
                     <div onClick={()=>router.push("/discover")} className="flex flex-col items-center hover:text-pink-500 cursor-pointer">
                         <IoPeopleSharp 
-                            className="w-5 h-5 "
+                            className="w-7 h-7 "
                         />
                         <div>People</div>
                     </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
                     </div>
                     <div onClick={()=>handleLogout()} className="flex flex-col items-center cursor-pointer text-pink-500 hover:text-red-500">
                         <IoExit 
-                            className="w-5 h-5"
+                            className="w-7 h-7 "
                         />
                         <div>
                             LOGOUT

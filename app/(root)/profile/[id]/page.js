@@ -9,6 +9,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { IoPersonAdd } from "react-icons/io5";
 import { IoPersonRemove } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import ProfilePostCard from "@/components/ProfilePostCard";
 
 
 
@@ -105,7 +107,7 @@ const Profile = ({ params }) => {
                     <img
                       src={profile?.profilePic}
                       alt="user photo"
-                      className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2 object-cover"
+                      className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2 object-contain bg-white"
                     />
                   </div>
                 </div>
@@ -187,17 +189,7 @@ const Profile = ({ params }) => {
                   {profilePosts &&
                     profilePosts.map((post, index) => {
                       return (
-                        <div
-                          key={index}
-                          onClick={() => handlePostModal(post.photo)}
-                          className="border shadow-sm rounded-sm"
-                        >
-                          <img
-                            src={post.photo}
-                            alt="post image"
-                            className="object-cover w-full rounded-sm sm:w-[600px] h-[500px]"
-                          />
-                        </div>
+                        <ProfilePostCard key={index} post={post} handlePostModal={handlePostModal} />
                       );
                     })}
                 </div>

@@ -90,7 +90,7 @@ const People = () => {
                               <img
                                 src={data?.profilePic}
                                 alt="profile image"
-                                className="h-20 w-20 rounded-full"
+                                className="h-20 w-20 rounded-full object-contain border"
                               />
                               <div className=" text-lg font-medium">
                                 {data?.fullname}

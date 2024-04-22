@@ -2,7 +2,7 @@
 
 import { PostsContext } from "@/providers/PostsContextProvider";
 import { useContext, useEffect } from "react";
-import PostCard from "./PostCard";
+import FeedPostCard from "./FeedPostCard";
 
 const AllPosts = () => {
   const { posts, fetchAllPosts, error } = useContext(PostsContext);
@@ -22,7 +22,7 @@ const AllPosts = () => {
               <div className="flex flex-col gap-4">
                 {posts?.map((post, i) => {
                   return (
-                    <PostCard
+                    <FeedPostCard
                       post={post}
                       
                       key={i}

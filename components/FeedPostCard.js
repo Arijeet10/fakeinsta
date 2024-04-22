@@ -13,7 +13,7 @@ import { PostsContext } from "@/providers/PostsContextProvider";
 
 const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
-const PostCard = ({post}) => {
+const FeedPostCard = ({post}) => {
 
   const { fetchAllPosts } = useContext(PostsContext);
 
@@ -103,7 +103,7 @@ const PostCard = ({post}) => {
             <img
               src={post?.userID?.profilePic}
               alt="profile image"
-              className="w-10 h-10 rounded-full object-cover"
+              className="w-10 h-10 rounded-full object-contain border"
             />
           </div>
           <div className="text-lg font-medium">
@@ -111,7 +111,7 @@ const PostCard = ({post}) => {
           </div>
         </div>
         <div className="">
-          <img src={post?.photo} alt="" className="w-full h-[500px] object-cover" />
+          <img src={post?.photo} alt="" className="w-full h-[500px] object-contain" />
         </div>
         <div>{post?.caption}</div>
         <div className="flex items-center justify-between">
@@ -184,4 +184,4 @@ const PostCard = ({post}) => {
   );
 };
 
-export default PostCard;
+export default FeedPostCard;
