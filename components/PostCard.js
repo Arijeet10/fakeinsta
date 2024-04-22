@@ -98,7 +98,7 @@ const PostCard = ({ post, fetchAllPosts }) => {
             <img
               src={post?.userID?.profilePic}
               alt="profile image"
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full object-cover"
             />
           </div>
           <div className="text-lg font-medium">

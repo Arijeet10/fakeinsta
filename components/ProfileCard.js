@@ -36,7 +36,7 @@ const ProfileCard = ({ userData }) => {
           <img
             src={userData?.profilePic}
             alt="user photo"
-            className="w-20 h-20 rounded-full border-2"
+            className="w-20 h-20 rounded-full border-2 object-cover"
           />
         </div>
         <div>{userData?.username}</div>
