@@ -56,25 +56,20 @@ const Login = () => {
 
   return (
     <>
-      <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] border shadow-md sm:w-[400px] p-2">
+      <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] sm:w-[400px] w-full p-2">
       <Toaster />
-        <div className="flex flex-col items-center">
+        <div className="pb-4 flex flex-col items-center">
           <AiFillInstagram 
             className="w-40 h-40 text-pink-500 hover:text-violet-500"
           />
           <div className="text-2xl font-bold">FakeInsta</div>
         </div>
-        <div className="flex items-center justify-between py-4">
-          <div className="font-semibold uppercase text-2xl">Login</div>
-          <button>
-            <IoCloseCircleSharp className="w-10 h-10 hover:text-red-500" />
-          </button>
-        </div>
+
         <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
           <input
             type="email"
             placeholder="enter your email id"
-            className="border border-black rounded-sm focus:outline-none p-1"
+            className="border border-pink-500 rounded-md focus:border-violet-500 focus:outline-none placeholder:text-pink-500 text-pink-500 focus:text-violet-500 p-1"
             value={loginData.email}
             onChange={(e) =>
               setLoginData({ ...loginData, email: e.target.value })
@@ -83,7 +78,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="enter your password"
-            className="border border-black rounded-sm focus:outline-none p-1"
+            className="border border-pink-500 rounded-md focus:border-violet-500 focus:outline-none placeholder:text-pink-500 text-pink-500 focus:text-violet-500 p-1"
             value={loginData.password}
             onChange={(e) =>
               setLoginData({ ...loginData, password: e.target.value })
@@ -95,7 +90,7 @@ const Login = () => {
             <input
               type="submit"
               value="Login"
-              className="bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 text-white font-medium uppercase p-2 rounded-sm "
+              className="bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 text-white font-medium uppercase p-2 rounded-md "
             />
           )}
         </form>
@@ -105,7 +100,7 @@ const Login = () => {
             <div>Don't have an account?</div>
             <Link
               href="/signup"
-              className="text-yellow-700 hover:text-yellow-500 cursor-pointer font-medium"
+              className="text-pink-700 hover:text-blue-500 cursor-pointer font-medium"
             >
               Sign up
             </Link>

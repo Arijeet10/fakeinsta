@@ -5,6 +5,10 @@ import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiFillInstagram, AiOutlineLoading3Quarters } from "react-icons/ai";
+import { MdAddAPhoto } from "react-icons/md";
+import { FaCameraRetro } from "react-icons/fa";
+
+
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -67,9 +71,9 @@ const Signup = () => {
 
   return (
     <>
-      <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] border shadow-md sm:w-[500px] p-2">
+      <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] sm:w-[500px] w-full p-2">
         <Toaster />
-        <div className="flex items-center justify-center gap-6">
+        <div className="pb-4 flex items-center justify-center gap-6">
           <AiFillInstagram 
             className="w-40 h-40 text-pink-500 hover:text-violet-500"
           />
@@ -91,11 +95,16 @@ const Signup = () => {
                 }
               />
               {Boolean(signupData.profilePic?.name) ? (
+                <div className="p-1 border border-pink-500 rounded-md focus:border-violet-500 flex items-center justify-start gap-6 text-pink-500 hover:text-violet-500">
+                <FaCameraRetro 
+                  className="w-10 h-10"
+                />
                 <div>{signupData.profilePic?.name}</div>
+                </div>
               ) : (
-                <div className="flex flex-col items-center">
-                  <CgProfile className="w-10 h-10" />
-                  <div className="font-medium">Upload Photo</div>
+                <div className="p-1 border border-pink-500 rounded-md focus:border-violet-500 flex items-center justify-start gap-6 text-pink-500 hover:text-violet-500">
+                  <MdAddAPhoto className="w-10 h-10" />
+                  <div className="font-medium">Upload Profile Pic</div>
                 </div>
               )}
             </div>
@@ -103,7 +112,7 @@ const Signup = () => {
           <input
             type="text"
             placeholder="enter your full name"
-            className="border border-black rounded-sm focus:outline-none p-1"
+            className="border border-pink-500 rounded-md focus:border-violet-500 focus:outline-none placeholder:text-pink-500 text-pink-500 focus:text-violet-500 p-1"
             value={signupData.fullname}
             onChange={(e) =>
               setSignupData({ ...signupData, fullname: e.target.value })
@@ -112,7 +121,7 @@ const Signup = () => {
           <input
             type="text"
             placeholder="enter username"
-            className="border border-black rounded-sm focus:outline-none p-1"
+            className="border border-pink-500 rounded-md focus:border-violet-500 focus:outline-none placeholder:text-pink-500 text-pink-500 focus:text-violet-500 p-1"
             value={signupData.username}
             onChange={(e) =>
               setSignupData({ ...signupData, username: e.target.value })
@@ -121,7 +130,7 @@ const Signup = () => {
           <input
             type="email"
             placeholder="enter your email id"
-            className="border border-black rounded-sm focus:outline-none p-1"
+            className="border border-pink-500 rounded-md focus:border-violet-500 focus:outline-none placeholder:text-pink-500 text-pink-500 focus:text-violet-500 p-1"
             value={signupData.email}
             onChange={(e) =>
               setSignupData({ ...signupData, email: e.target.value })
@@ -130,7 +139,7 @@ const Signup = () => {
           <input
             type="password"
             placeholder="enter your password"
-            className="border border-black rounded-sm focus:outline-none p-1"
+            className="border border-pink-500 rounded-md focus:border-violet-500 focus:outline-none placeholder:text-pink-500 text-pink-500 focus:text-violet-500 p-1"
             value={signupData.password}
             onChange={(e) =>
               setSignupData({ ...signupData, password: e.target.value })
@@ -142,7 +151,7 @@ const Signup = () => {
             <input
               type="submit"
               value="Signup"
-              className=" bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 text-white font-medium uppercase p-2 rounded-sm "
+              className=" bg-gradient-to-r from-pink-500 to-violet-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-500 text-white font-medium uppercase p-2 rounded-md "
             />
           )}
         </form>
@@ -152,7 +161,7 @@ const Signup = () => {
             <div>Already have an account?</div>
             <Link
               href="/login"
-              className="text-yellow-700 hover:text-yellow-500 cursor-pointer font-medium"
+              className="text-pink-700 hover:text-blue-500 cursor-pointer font-medium"
             >
               Login
             </Link>
