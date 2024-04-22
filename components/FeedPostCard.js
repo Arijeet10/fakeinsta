@@ -11,7 +11,6 @@ import { FaHeart } from "react-icons/fa";
 import CommentsCard from "./CommentsCard";
 import { PostsContext } from "@/providers/PostsContextProvider";
 
-const url = process.env.NEXT_PUBLIC_ROOT_URL;
 
 const FeedPostCard = ({post}) => {
 
@@ -37,7 +36,7 @@ const FeedPostCard = ({post}) => {
     };
     //console.log(payload)
     try {
-      const res=await axios.post(url+"api/posts/comments-for-post/",payload)
+      const res=await axios.post("/api/posts/comments-for-post/",payload)
       //console.log(res.data);
       if(res.status){
         setPostComments(res?.data?.commentList?.comments)
@@ -66,7 +65,7 @@ const FeedPostCard = ({post}) => {
       comment
     }
     try {
-      const res=await axios.post(url+"api/posts/comment",payload)
+      const res=await axios.post("/api/posts/comment",payload)
       //console.log(res)
       if(res.status){
         setComment("");
@@ -85,7 +84,7 @@ const FeedPostCard = ({post}) => {
     };
     //console.log(postID)
     try {
-      const res = await axios.post(url + "api/posts/like", payload);
+      const res = await axios.post("/api/posts/like", payload);
       if (res.status) {
         await fetchAllPosts();
         setLikeMessage(res.data.message);
