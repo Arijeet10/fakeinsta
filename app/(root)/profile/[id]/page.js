@@ -105,7 +105,7 @@ const Profile = ({ params }) => {
                     <img
                       src={profile?.profilePic}
                       alt="user photo"
-                      className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2"
+                      className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2 object-cover"
                     />
                   </div>
                 </div>
