@@ -27,7 +27,7 @@ export async function POST(req) {
       return NextResponse.json(
         {
           message: "Like",
-          data: postData.like,
+          data: postData.likes,
           success: true,
         },
         { status: 201 }
@@ -45,7 +45,7 @@ export async function POST(req) {
     return NextResponse.json(
       {
         message: "Liked",
-        data: postData.like,
+        data: postData.likes,
         success: true,
       },
       { status: 201 }

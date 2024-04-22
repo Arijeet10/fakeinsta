@@ -117,16 +117,20 @@ const FeedPostCard = ({post}) => {
         </div>
         <div>{post?.caption}</div>
         <div className="flex items-center justify-between">
+
           {/* like count */}
           <div>
-            {post?.likes?.length ? post.likes.length + "likes" : "Be the first to like"}
+            {post?.likes.length ? post.likes.length + "likes" : "Be the first to like"}
           </div>
+
           {/* comment count */}
           <div>
             {post?.comments?.length?post.comments.length+"comments":"No Comments"}
           </div>
         </div>
         <div className="border-t w-full" />
+
+        {/* Like or Unlike a Post */}
         <div className="flex items-center justify-between">
           <div onClick={() => handleLike()} className="flex items-center gap-1 cursor-pointer">
             {post?.likes.includes(userData?._id) ? (
@@ -153,6 +157,7 @@ const FeedPostCard = ({post}) => {
         </div>
         {showComment && (
           <>
+
           {/* send comment to post */}
             <div className="p-2 grid sm:grid-cols-12 gap-4">
               <div className="sm:col-span-10 flex items-center gap-1">
@@ -175,6 +180,7 @@ const FeedPostCard = ({post}) => {
                 </button>
               </div>
             </div>
+
             {/* list of comments in the post */}
             {post?.comments && postComments?.map((comment,i)=>{
               return(<CommentsCard key={i} comment={comment} />)

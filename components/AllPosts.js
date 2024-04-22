@@ -10,7 +10,7 @@ const AllPosts = () => {
 
   useEffect(() => {
     fetchAllPosts();
-  }, [])
+  }, [posts])
   
 
   return (
