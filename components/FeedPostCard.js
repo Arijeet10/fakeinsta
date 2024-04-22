@@ -87,8 +87,8 @@ const FeedPostCard = ({post}) => {
     try {
       const res = await axios.post(url + "api/posts/like", payload);
       if (res.status) {
-        setLikeMessage(res.data.message);
         await fetchAllPosts();
+        setLikeMessage(res.data.message);
       }
     } catch (error) {
       console.log(error);
@@ -127,7 +127,7 @@ const FeedPostCard = ({post}) => {
         <div className="border-t w-full" />
         <div className="flex items-center justify-between">
           <div onClick={() => handleLike()} className="flex items-center gap-1 cursor-pointer">
-            {post?.likes?.includes(userData?._id) ? (
+            {post?.likes.includes(userData?._id) ? (
               <>
                 <FaHeart className="w-10 h-10 text-pink-500" />
                 <div className="font-medium">Liked</div>
