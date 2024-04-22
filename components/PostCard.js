@@ -117,11 +117,11 @@ const PostCard = ({post}) => {
         <div className="flex items-center justify-between">
           {/* like count */}
           <div>
-            {post?.likes?.length ? post.likes.length + "likes" : "0 likes"}
+            {post?.likes?.length ? post.likes.length + "likes" : "Be the first to like"}
           </div>
           {/* comment count */}
           <div>
-            {post?.comments?.length?post.comments.length+"comments":"0 comments"}
+            {post?.comments?.length?post.comments.length+"comments":"No Comments"}
           </div>
         </div>
         <div className="border-t w-full" />
