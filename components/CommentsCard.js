@@ -3,7 +3,7 @@
 
 const CommentsCard = ({ comment }) => {
 
-  console.log(comment)  
+  //console.log(comment)  
   
   return (
     <>

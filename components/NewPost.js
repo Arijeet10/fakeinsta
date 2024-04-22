@@ -31,7 +31,7 @@ const NewPost = ({ userData, fetchCurrentUser }) => {
 
   const handleShare = async() => {
     setLoading(true);
-    console.log(postData);
+    //console.log(postData);
     const formData=new FormData();
     formData.set("caption",postData.caption);
     formData.set("photo",postData.photo);
