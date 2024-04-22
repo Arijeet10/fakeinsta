@@ -5,7 +5,6 @@ import React,{useEffect, useState} from "react";
 
 export const PostsContext=React.createContext();
 
-const url=process.env.NEXT_PUBLIC_ROOT_URL;
 
 const PostsContextProvider=({children})=>{
     const [posts,setPosts]=useState();
@@ -15,7 +14,7 @@ const PostsContextProvider=({children})=>{
     const fetchAllPosts=async()=>{
         try {
             setLoading(true);
-            const res=await axios.get(url+"api/posts/allposts");
+            const res=await axios.get("/api/posts/allposts");
             setPosts(res?.data?.posts);
         } catch (error) {
             console.log(error);

@@ -9,7 +9,7 @@ import { UserContext } from "@/providers/UserContextProvider";
 import { useContext } from "react";
 
 const Home = () => {
-  const { userData, fetchCurrentUser, loading, error } =
+  const { userData, loading, error } =
     useContext(UserContext);
   //console.log(userData)
 
@@ -31,7 +31,6 @@ const Home = () => {
               <div className="sm:col-span-7 md:col-span-5 flex flex-col gap-6">
                 <NewPost
                   userData={userData}
-                  fetchCurrentUser={fetchCurrentUser}
                 />
                 <AllPosts />
               </div>

@@ -7,12 +7,14 @@ import toast,{Toaster} from "react-hot-toast";
 import { PostsContext } from "@/providers/PostsContextProvider";
 import { MdAddAPhoto } from "react-icons/md";
 import { FaCameraRetro } from "react-icons/fa";
+import { UserContext } from "@/providers/UserContextProvider";
 
 const url=process.env.NEXT_PUBLIC_ROOT_URL
 
-const NewPost = ({ userData, fetchCurrentUser }) => {
+const NewPost = ({ userData }) => {
 
 
+  const {fetchCurrentUser}=useContext(UserContext);
   const {fetchAllPosts}=useContext(PostsContext);
 
   // console.log(userData._id)
@@ -45,8 +47,8 @@ const NewPost = ({ userData, fetchCurrentUser }) => {
           caption:"",
           photo:"",
         });
-        fetchCurrentUser();
-        fetchAllPosts();
+        await fetchCurrentUser();
+        await fetchAllPosts();
       }
     } catch (error) {
       console.log(error)

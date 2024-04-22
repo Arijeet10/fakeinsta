@@ -38,7 +38,7 @@ const People = () => {
             toast.success(res.data.message);
 
             //to get updated following stats
-            fetchCurrentUser();
+            await fetchCurrentUser();
         }
     } catch (error) {
         console.log(error)

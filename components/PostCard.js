@@ -70,8 +70,8 @@ const PostCard = ({post}) => {
       //console.log(res)
       if(res.status){
         setComment("");
-        fetchAllPosts();
-        getPostComments();
+        await fetchAllPosts();
+        await getPostComments();
       }
     } catch (error) {
       console.log(error);
@@ -88,7 +88,7 @@ const PostCard = ({post}) => {
       const res = await axios.post(url + "api/posts/like", payload);
       if (res.status) {
         setLikeMessage(res.data.message);
-        fetchAllPosts();
+        await fetchAllPosts();
       }
     } catch (error) {
       console.log(error);
