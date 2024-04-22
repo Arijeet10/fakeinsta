@@ -4,8 +4,6 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiFillInstagram } from "react-icons/ai";
 import toast, { Toaster } from "react-hot-toast";
 import Loading from "@/components/Loading";
@@ -25,14 +23,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    console.log(loginData);
+    //console.log(loginData);
     const formData = new FormData();
     formData.set("email", loginData.email);
     formData.set("password", loginData.password);
     // console.log(formData)
     try {
       const res = await axios.post(url + "api/login", formData);
-      console.log(res);
+      //console.log(res);
       if (res.status) {
         toast.success(res.data.message);
         setLoginData({

@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { IoCloseCircleSharp } from "react-icons/io5";
-import { AiFillInstagram, AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiFillInstagram } from "react-icons/ai";
 import { MdAddAPhoto } from "react-icons/md";
 import { FaCameraRetro } from "react-icons/fa";
 
 
-import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
@@ -38,7 +36,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    console.log(signupData);
+    //console.log(signupData);
     const formData = new FormData();
     formData.set("fullname", signupData.fullname);
     formData.set("username", signupData.username);
