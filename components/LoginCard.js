@@ -30,7 +30,7 @@ const LoginCard = ({ handleSubmit, loginData, setLoginData }) => {
       >
         <div className=" flex flex-col gap-2">
 
-          {/* User Email Section */}
+          {/* User Email Input */}
           <div className="relative p-2 border rounded-sm">
             <input
               type="text"
@@ -50,7 +50,7 @@ const LoginCard = ({ handleSubmit, loginData, setLoginData }) => {
             </span>
           </div>
 
-          {/* User Password section */}
+          {/* User Password Input */}
           <div className={`relative p-2 border rounded-sm ${loginData.password!=="" && "flex items-center justify-between gap-2"}`}>
             <input
               type={inputType}
@@ -63,12 +63,12 @@ const LoginCard = ({ handleSubmit, loginData, setLoginData }) => {
             />
 
             {/* to show or hide password */}
-            <button
+            <span
                 onClick={() => handleShowHidePassword()}
                 className={`font-medium cursor-pointer ${loginData.password=="" && "hidden"}`}
               >
                 {showPassword}
-              </button>
+              </span>
 
 
             {/* for placeholder go to the top effect */}
