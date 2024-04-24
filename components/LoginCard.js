@@ -86,7 +86,7 @@ const LoginCard = ({ handleSubmit, loginData, setLoginData }) => {
           <input
             type="submit"
             value="Log in"
-            className="w-full p-2 rounded-lg bg-blue-500 hover:bg-gradient-to-r from-pink-500 to-violet-500 text-white font-medium "
+            className="w-full p-2 rounded-lg bg-blue-300 hover:bg-gradient-to-r from-pink-500 to-violet-500 text-white font-medium "
           />
         </div>
       </form>

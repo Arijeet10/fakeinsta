@@ -55,19 +55,28 @@ const Login = () => {
 
   return (
     <>
-      <div className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] sm:w-[400px] w-full p-2 sm:border">
+      <div className="absolute top-20 left-2/4 translate-x-[-50%]  sm:w-[500px] w-full flex flex-col gap-4 ">
         <Toaster />
-        <div className="pb-4 flex flex-col items-center">
-          <AiFillInstagram className=" w-40 h-40  hover:text-pink-500" />
-          <div className="text-2xl font-bold">FakeInsta</div>
+        <div className="p-8 m-2 border border-slate-300">
+
+        {/* Fake Instagram Illutration */}
+          <div className="pb-4 flex flex-col items-center">
+            <AiFillInstagram className=" w-40 h-40  hover:text-pink-500" />
+            <div className="text-2xl font-bold font-[cursive]">FakeInsta</div>
+          </div>
+
+          {/* login form */}
+          <div className="">
+            <LoginCard
+              handleSubmit={handleSubmit}
+              loginData={loginData}
+              setLoginData={setLoginData}
+            />
+          </div>
         </div>
 
-        {/* login form */}
-        <LoginCard handleSubmit={handleSubmit} loginData={loginData} setLoginData={setLoginData} />
-
-
-        <div className="py-2">
-          <div className="w-full border-t  " />
+        {/* Go To Sign Up Page */}
+        <div className="p-4 m-2 border border-slate-300">
           <div className="py-2 flex flex-col items-center font-medium">
             <div>Don't have an account?</div>
             <Link
@@ -78,6 +87,7 @@ const Login = () => {
             </Link>
           </div>
         </div>
+        
       </div>
     </>
   );
