@@ -3,3 +3,26 @@
 @tailwind utilities;
 
 
+/* form input placeholder effect */
+.form-input:focus ~ .placeholder-text,
+.form-input:not(:focus):valid ~ .placeholder-text
+{
+    top:0px;
+    left:8px;
+    font-size:12px;
+}
+
+.placeholder-text{
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+/* .form-input:focus{
+    
+} */
+
+
+
+
+
+
