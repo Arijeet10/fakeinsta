@@ -79,11 +79,11 @@ const ProfilePostCard = ({ post, handlePostModal, setBgDarkEffect, closeBackgrou
           <div className="relative flex items-center justify-end">
             <BsThreeDotsVertical
               onClick={() => setModal(!modal)}
-              className="w-8 h-8 hover:text-pink-500"
+              className="w-5 h-5 hover:text-pink-500"
             />
             {modal && (
               <>
-                <div className=" absolute top-10 right-7 z-50 bg-white   border rounded-lg shadow-md ">
+                <div className=" absolute top-5 right-2 z-50 bg-white   border rounded-lg shadow-md cursor-pointer">
                   <div
                     onClick={() => openEditCaption()}
                     className="p-2 flex items-center justify-between hover:text-indigo-500"
@@ -128,7 +128,7 @@ const ProfilePostCard = ({ post, handlePostModal, setBgDarkEffect, closeBackgrou
                   placeholder={`${post?.caption || ""}`}
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
-                  className=" focus:outline-none w-full  p-2"
+                  className="border focus:outline-none w-full  p-2"
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -147,17 +147,24 @@ const ProfilePostCard = ({ post, handlePostModal, setBgDarkEffect, closeBackgrou
       {/* delete confirm message popup */}
       {confirmDelete && (
         <>
-          <div className="w-full sm:w-[500px] p-2 rounded-lg fixed bg-white z-50 top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] ">
-            <div className="py-2 flex items-center justify-end">
-              <IoIosClose
+          <div className="w-full sm:w-[500px] p-2 rounded-sm fixed bg-white z-50 top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] ">
+
+            <div className="py-2 flex items-center justify-between">
+
+            <div className=" text-xl font-semibold">
+              Confirm Delete Post?
+            </div>
+
+            <div>
+            <IoIosClose
                 onClick={() => closeBackgroundDarkEffect()}
                 className="h-10 w-10 hover:text-red-500"
               />
+
             </div>
-            <div className="py-2 text-lg font-semibold">
-              Confirm Delete Post?
             </div>
-            <div className="py-4 font-medium flex items-center justify-between">
+
+            <div className="py-4 font-medium flex items-center justify-end gap-4">
               <button
                 onClick={() => handleDeletePost(post?._id)}
                 className="px-4 py-2 rounded-lg border bg-pink-500 text-white hover:bg-violet-500"

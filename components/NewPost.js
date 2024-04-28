@@ -69,7 +69,7 @@ const NewPost = ({ userData }) => {
           <img
             src={userData?.profilePic}
             alt="user photo"
-            className="w-10 h-10 rounded-full"
+            className="w-10 h-10 rounded-full object-contain"
           />
           <textarea
             type="text"

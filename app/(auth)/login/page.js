@@ -55,11 +55,17 @@ const Login = () => {
 
   return (
     <>
+      {/* Sample email and password */}
+      <div className="font-medium">
+        <div className="font-semibold">Login with the sample account</div>
+        <div className="">Email: <span className="text-slate-600">admin@gmail.com</span></div>
+        <div>Password: <span className="text-slate-600">admin1234</span></div>
+      </div>
+
       <div className="absolute top-20 left-2/4 translate-x-[-50%]  sm:w-[500px] w-full flex flex-col gap-4 ">
         <Toaster />
         <div className="p-8 m-2 border border-slate-300">
-
-        {/* Fake Instagram Illutration */}
+          {/* Fake Instagram Illutration */}
           <div className="pb-4 flex flex-col items-center">
             <AiFillInstagram className=" w-40 h-40  hover:text-pink-500" />
             <div className="text-2xl font-bold font-[cursive]">FakeInsta</div>
@@ -87,7 +93,6 @@ const Login = () => {
             </Link>
           </div>
         </div>
-        
       </div>
     </>
   );

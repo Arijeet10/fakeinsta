@@ -31,7 +31,7 @@ const ProfileCard = ({ userData }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center p-4 border shadow-md">
+      <div className="flex flex-col items-center p-4 border shadow-md rounded-lg">
         <div onClick={()=>router.push(`/profile/${userData?._id}`)} className="rounded-full p-1 cursor-pointer bg-gradient-to-r from-pink-500 to-violet-500">
           <img
             src={userData?.profilePic}
