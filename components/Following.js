@@ -55,7 +55,7 @@ const Following = ({ personID }) => {
                   <img
                     src={person?.profilePic}
                     alt="profile image"
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full object-contain"
                   />
                   <div className="font-medium">{person?.fullname}</div>
                 </div>
