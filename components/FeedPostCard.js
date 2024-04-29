@@ -27,7 +27,7 @@ const FeedPostCard = ({post}) => {
   const [postComments,setPostComments]=useState();
  // console.log(postComments)
 
-  const [likeMessage, setLikeMessage] = useState("Like");
+  const [likeMessage, setLikeMessage] = useState();
 
   const { userData } = useContext(UserContext);
 
@@ -92,6 +92,8 @@ const FeedPostCard = ({post}) => {
     try {
       const res = await axios.post("/api/posts/like", payload);
       if (res.status) {
+        setLikeMessage(res?.data?.message);
+        await fetchAllPosts();
         if(res.data.message=="Like"){
           toast('Disliked', {
             icon: '👎',
@@ -101,13 +103,17 @@ const FeedPostCard = ({post}) => {
             icon: '👍',
           });
         }
-        await fetchAllPosts();
-        setLikeMessage(res.data.message);
+
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  // useEffect(() => {
+  //   console.log(likeMessage)
+  // }, [likeMessage])
+  
 
   return (
     <>
@@ -148,12 +154,18 @@ const FeedPostCard = ({post}) => {
           <div onClick={() => handleLike()} className="flex items-center gap-1 cursor-pointer">
             {post?.likes.includes(userData?._id) ? (
               <>
-                <FaHeart className="w-10 h-10 text-pink-500" />
+              <FaHeart className="w-10 h-10 text-pink-500" />
                 <div className="font-medium">Liked</div>
               </>
             ) : (
               <>
-                <FaRegHeart className={`w-10 h-10 hover:text-pink-500 ${likeMessage=="Liked" && "text-pink-500"}`} />
+                <>
+                {likeMessage=="Liked"?(
+                  <FaHeart className="w-10 h-10 text-pink-500" />
+                ):(
+                  <FaRegHeart className={`w-10 h-10 hover:text-pink-500 `} />
+                )}
+                </>
                 <div>{likeMessage}</div>
               </>
             )}
