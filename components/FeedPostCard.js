@@ -153,7 +153,7 @@ const FeedPostCard = ({post}) => {
               </>
             ) : (
               <>
-                <FaRegHeart className="w-10 h-10 hover:text-pink-500" />
+                <FaRegHeart className={`w-10 h-10 hover:text-pink-500 ${likeMessage=="Liked" && "text-pink-500"}`} />
                 <div>{likeMessage}</div>
               </>
             )}
