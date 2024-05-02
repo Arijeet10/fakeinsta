@@ -178,9 +178,9 @@ const Profile = ({ params }) => {
                   </div>
 
                   {/*Posts, Following and Followers Count panel */}
-                  <div className="flex items-center justify-between gap-4">
-                  <div className="flex flex-col ">
-                      <div>
+                  <div className="flex items-center md:justify-start md:gap-6 justify-between gap-4">
+                  <div className="flex flex-col">
+                      <div className="text-center">
                         {profilePosts?.length}
                       </div>
                       <div className="text-lg font-semibold">
@@ -188,7 +188,7 @@ const Profile = ({ params }) => {
                       </div>
                     </div>
                     <div className="flex flex-col ">
-                      <div>
+                      <div className="text-center">
                         {profile?.following?.length}
                       </div>
                       <div className="text-lg font-semibold">
@@ -196,7 +196,7 @@ const Profile = ({ params }) => {
                       </div>
                     </div>
                     <div className="flex flex-col">
-                      <div>
+                      <div className="text-center">
                         {profile?.followers?.length}
                       </div>
                       <div className="text-lg font-semibold">
