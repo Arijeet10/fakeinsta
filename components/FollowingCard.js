@@ -24,9 +24,13 @@ const FollowingCard = () => {
       <div className="p-2 border shadow-md rounded-md">
         <div className="font-semibold">Following:</div>
         <div className="">
-        {following && following.map((personID,index)=>{
+        {following ? following.map((personID,index)=>{
           return <Following key={index} personID={personID} />
-        })}
+        }):(
+          <div className="text-slate-600">
+            You are not following anyone
+          </div>
+        )}
         </div>
       </div>
     </>
