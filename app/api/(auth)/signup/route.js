@@ -28,6 +28,8 @@ export async function POST(req){
         }
         const salt=await bcryptjs.genSalt(10);
         const hashedPassword=await bcryptjs.hash(password,salt);
+
+        //upload photo to cloudinary
         let uploadedProfilePic="";
         if(profilePic?.name){
             uploadedProfilePic=await uploadImage(profilePic);

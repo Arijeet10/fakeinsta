@@ -35,6 +35,29 @@ const Profile = ({ params }) => {
     profileName:"",
   })
 
+
+  const handleUpdateProfilePic=async(e)=>{
+    const formData = new FormData();
+    const profilePic=e.target.files[0]
+    formData.set("profileID",params.id);
+    formData.set("profilePic", profilePic);
+    try {
+      setLoading(true);
+      const res=await axios.post("/api/user/update/profile-pic",formData)
+      
+      if(res.status){
+        await fetchCurrentUser();
+        toast.success(res.data.message)
+      }
+
+    } catch (error) {
+      console.log(error)
+      toast.error("Profile Pic Update Error")
+    } finally{
+      setLoading(false);
+    }
+  }
+
   //to upload profile picture
   const handleUploadProfilePic=()=>{
     inputFileRef.current.click();
@@ -119,7 +142,7 @@ const Profile = ({ params }) => {
         setLoading(false);
       }
     })();
-  }, [params]);
+  }, [params,userData]);
 
   return (
     <>
@@ -142,13 +165,13 @@ const Profile = ({ params }) => {
                       alt="user photo"
                       className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2 object-contain bg-white"
                     />
-                    <div onClick={()=>handleUploadProfilePic()} className="bg-white border border-white hover:border hover:border-slate-200 rounded-full p-2 z-50 absolute bottom-8 right-0 md:bottom-10 md:right-2 lg:bottom-10 lg:right-6 ">
+                    <div onClick={()=>handleUploadProfilePic()} className="bg-white border border-white hover:border hover:border-slate-200 rounded-full p-2 z-10 absolute bottom-8 right-0 md:bottom-10 md:right-2 lg:bottom-10 lg:right-6 ">
                     <FaCamera className="w-7 h-7 md:w-10 md:h-10" />
                     <input 
                       type="file"
                       ref={inputFileRef}
                       className="hidden"
-                      onChange={()=>setUpdateProfile({...updateProfile,profilePic:e.target.files[0]})}
+                      onChange={(e)=>handleUpdateProfilePic(e)}
                     />
                     </div>
                   </div>
