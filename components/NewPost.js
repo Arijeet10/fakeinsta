@@ -85,7 +85,7 @@ const NewPost = ({ userData }) => {
             type="text"
             rows="2"
             placeholder="write caption for the post..."
-            className="block sm:hidden border  rounded-md focus:border-violet-500 hover:border-pink-500  text-pink-500 focus:text-violet-500 focus:outline-none w-full  p-2"
+            className="sm:hidden block border  rounded-md focus:border-violet-500 hover:border-pink-500  text-pink-500 focus:text-violet-500 focus:outline-none w-full  p-2"
             value={postData.caption}
             onChange={(e) =>
               setPostData({ ...postData, caption: e.target.value })

@@ -29,9 +29,6 @@ const Home = () => {
                 <ProfileCard userData={userData} />
                 <FollowingCard />
               </div>
-              {/* <div className="hidden md:block md:col-span-3">
-                <FollowingCard />
-              </div> */}
               <div className="sm:col-span-7 md:col-span-8 flex flex-col gap-6">
                 <NewPost
                   userData={userData}
