@@ -4,12 +4,14 @@ import Loading from "@/components/Loading";
 import { getUserPosts } from "@/helpers/request";
 import { UserContext } from "@/providers/UserContextProvider";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoPersonAdd } from "react-icons/io5";
 import { IoPersonRemove } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { FaCamera } from "react-icons/fa";
+
 import ProfilePostCard from "@/components/ProfilePostCard";
 
 
@@ -25,6 +27,18 @@ const Profile = ({ params }) => {
   const [photoURL, setPhotoURL] = useState();
   const [bgDarkEffect,setBgDarkEffect]=useState(false);
   const { userData, fetchCurrentUser } = useContext(UserContext);
+
+  const inputFileRef=useRef();
+  const [updateProfile,setUpdateProfile]=useState({
+    profilePic:"",
+    profileBio:"",
+    profileName:"",
+  })
+
+  //to upload profile picture
+  const handleUploadProfilePic=()=>{
+    inputFileRef.current.click();
+  }
 
   //close background darken effect and also other modals tooo
   const closeBackgroundDarkEffect=()=>{
@@ -122,17 +136,31 @@ const Profile = ({ params }) => {
               {/* Profile Information */}
               <div className="p-6 grid items-start gap-4 grid-flow-row sm:grid-flow-col sm:grid-cols-12">
                 <div className="sm:col-span-7 md:col-span-6 lg:col-span-4 flex items-center justify-center">
-                  <div className="  rounded-full p-1 bg-gradient-to-r from-pink-500 to-violet-500">
+                  <div className=" relative rounded-full p-1 bg-gradient-to-r from-pink-500 to-violet-500">
                     <img
                       src={profile?.profilePic}
                       alt="user photo"
                       className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full border-2 object-contain bg-white"
                     />
+                    <div onClick={()=>handleUploadProfilePic()} className="bg-white border border-white hover:border hover:border-slate-200 rounded-full p-2 z-50 absolute bottom-8 right-0 md:bottom-10 md:right-2 lg:bottom-10 lg:right-6 ">
+                    <FaCamera className="w-7 h-7 md:w-10 md:h-10" />
+                    <input 
+                      type="file"
+                      ref={inputFileRef}
+                      className="hidden"
+                      onChange={()=>setUpdateProfile({...updateProfile,profilePic:e.target.files[0]})}
+                    />
+                    </div>
                   </div>
                 </div>
                 <div className="sm:col-span-5 md:col-span-6 lg:col-span-8 flex flex-col gap-4">
-                  <div className="text-4xl font-semibold">
+                  <div className="text-4xl font-semibold flex items-start gap-2">
+                    <div>
                     {profile?.fullname}
+                    </div>
+                    <div>
+                    <FaEdit className="w-5 h-5 hover:text-pink-500" />
+                    </div>
                   </div>
                   <div className="text-slate-500 font-medium ">
                     {profile?.username}
